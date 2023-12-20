@@ -1,6 +1,6 @@
 import { Story } from 'react-insta-stories/dist/interfaces';
 import Stories from 'react-insta-stories';
-import { useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { handleDownload, handleShare } from './utils/handleEvents';
 
 type Sizes = {
@@ -62,7 +62,7 @@ function App() {
           Baixar imagem →
         </p>
       ),
-      seeMore: ({ close }) => (
+      seeMore: ({ close }: { close: MouseEventHandler }) => (
         <div
           style={{
             maxWidth: "100%",
