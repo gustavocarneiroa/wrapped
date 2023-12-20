@@ -1,46 +1,103 @@
 import { Story } from 'react-insta-stories/dist/interfaces';
 import Stories from 'react-insta-stories';
 import { useEffect, useState } from 'react';
-import { Story1 } from './components/story1';
-import { Story5 } from './components/story5';
-import { Story2 } from './components/story2';
-import { Story3 } from './components/story3';
-type Sizes = { 
-  width?: number | string, 
-  height?: number | string 
-}; 
+import { handleDownload, handleShare } from './utils/handleEvents';
+
+type Sizes = {
+  width?: number | string,
+  height?: number | string
+};
 
 function App() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const students = {
+    teste: "Gustavo"
+  };
+  const id = searchParams.get('sid') as keyof typeof students | null;
+  if (!id) {
+    return (
+      <>
+        <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+          <h1
+            style={{ color: 'white', fontFamily: 'sans-serif' }}
+          >Teacher Késsia Lima Wrapped 2023</h1>
+        </div>
+      </>
+    )
+  }
+  document.title = `${students[id]} - TKL`
   const stories: Story[] = [
-    Story1,
-    Story2,
-    Story3,
     {
-      url:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      url: `/${id}/1.mp4`,
       type: "video",
     },
-    Story5,
     {
-      url: "https://plus.unsplash.com/premium_photo-1676231417481-5eae894e7f68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
+      url: `/${id}/2.mp4`,
+      type: "video",
     },
     {
-      url: "https://images.unsplash.com/photo-1676321626679-2513969695d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      url: `/${id}/3.mp4`,
+      type: "video",
     },
     {
-      url: "https://images.unsplash.com/photo-1676359912443-1bf438548584?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      url: `/${id}/4.mp4`,
+      type: "video",
     },
     {
-      url: "https://images.unsplash.com/photo-1676316698468-a907099ad5bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
-      preloadResource: false,
+      url: `/${id}/5.mp4`,
+      type: "video",
     },
     {
-      url: "https://images.unsplash.com/photo-1676310483825-daa08914445e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2920&q=80",
-      preloadResource: false,
+      url: `/${id}/6.mp4`,
+      type: "video",
+      seeMoreCollapsed: ({ toggleMore }) => (
+        <p 
+          onClick={() => toggleMore(true)}
+          style={{
+            color: 'white',
+            textAlign: 'center',
+            fontFamily: 'sans-serif'
+          }}  
+        >
+          Baixar imagem →
+        </p>
+      ),
+      seeMore: ({ close }) => (
+        <div
+          style={{
+            maxWidth: "100%",
+            height: "100%",
+            padding: 20,
+            background: "#262626",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: "sans-serif",
+            color: "white",
+            fontWeight: "bolder"
+          }}
+        >
+          <img src={`/${id}/recap.png`} style={{
+            width: "80%",
+          }}></img>
+          <div>
+          <p style={{ textDecoration: "underline" }} onClick={() => handleDownload(`/${id}/recap.png`)}>
+            Download
+          </p>
+          <p style={{ textDecoration: "underline" }} onClick={()=> handleShare(`/${id}/recap.png`)}>
+            Share
+          </p>
+          <p style={{ textDecoration: "underline" }} onClick={close}>
+            Back
+          </p>
+          </div>
+        </div>
+      ),
     },
     {
-      url: "https://images.unsplash.com/photo-1676321685222-0b527e61d5c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-      preloadResource: false,
+      url: `/${id}/7.mp4`,
+      type: "video",
     },
   ];
   const [sizes, setSizes] = useState<Sizes>({});
@@ -52,29 +109,28 @@ function App() {
       height: undefined,
     };
 
-    if ( width < maxWidth ) {
-      Object.assign(newSizes,  {
+    if (width < maxWidth) {
+      Object.assign(newSizes, {
         width: "100vw",
         height: "100vh",
       })
-    } 
+    }
 
     setSizes(newSizes);
   }, []);
-  
   return (
     <>
-    <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'hidden', height: '100vh' }}>
-      <Stories
-        stories={stories}
-        defaultInterval={80000}
-        width={sizes.width}
-        height={sizes.height}
-        keyboardNavigation={true}
-        loop={true}
-        storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
-      />
-    </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'hidden', height: '100vh' }}>
+        <Stories
+          stories={stories}
+          defaultInterval={80000}
+          width={sizes.width}
+          height={sizes.height}
+          keyboardNavigation={true}
+          loop={true}
+          storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
+        />
+      </div>
     </>
   )
 }
