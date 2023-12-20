@@ -2,6 +2,7 @@ import { Story } from 'react-insta-stories/dist/interfaces';
 import Stories from 'react-insta-stories';
 import { MouseEventHandler, useEffect, useState } from 'react';
 import { handleDownload, handleShare } from './utils/handleEvents';
+import Coupon from './components/coupon';
 
 type Sizes = {
   width?: number | string,
@@ -11,10 +12,79 @@ type Sizes = {
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const students = {
-    teste: "Gustavo"
+    "f752fd75-e9db-4694-8c8a-9cf4a0b02d7e": {
+      name: "Gustavo",
+      folder: "teste",
+      coupon: "GUSTAVOC2024",
+    },
+    "0f6dde03-fc39-4df7-8a73-950f1ae83f2c": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c537": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c539": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c530": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c531": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c532": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c533": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c534": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c535": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c536": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c538": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c529": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    },
+    "948deb8a-291d-4709-9fcb-0d811b85c528": {
+      name: "Késsia",
+      folder: "kessia",
+      coupon: "KESSIALI2024",
+    }
   };
   const id = searchParams.get('sid') as keyof typeof students | null;
-  if (!id) {
+  if (!id || !students[id]) {
     return (
       <>
         <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
@@ -25,41 +95,42 @@ function App() {
       </>
     )
   }
-  document.title = `${students[id]} - TKL`
+  const { name, coupon, folder } = students[id]
+  document.title = `${name} - TKL`
   const stories: Story[] = [
     {
-      url: `/wrapped/${id}/1.mp4`,
+      url: `/wrapped/common/1.mp4`,
       type: "video",
     },
     {
-      url: `/wrapped/${id}/2.mp4`,
+      url: `/wrapped/${folder}/2.mp4`,
       type: "video",
     },
     {
-      url: `/wrapped/${id}/3.mp4`,
+      url: `/wrapped/${folder}/3.mp4`,
       type: "video",
     },
     {
-      url: `/wrapped/${id}/4.mp4`,
+      url: `/wrapped/${folder}/4.mp4`,
       type: "video",
     },
     {
-      url: `/wrapped/${id}/5.mp4`,
+      url: `/wrapped/common/5.mp4`,
       type: "video",
     },
     {
-      url: `/wrapped/${id}/6.mp4`,
+      url: `/wrapped/${folder}/6.mp4`,
       type: "video",
       seeMoreCollapsed: ({ toggleMore }) => (
-        <p 
+        <p
           onClick={() => toggleMore(true)}
           style={{
             color: 'white',
             textAlign: 'center',
             fontFamily: 'sans-serif'
-          }}  
+          }}
         >
-          Baixar imagem →
+          Wanna share it? →
         </p>
       ),
       seeMore: ({ close }: { close: MouseEventHandler }) => (
@@ -78,26 +149,48 @@ function App() {
             fontWeight: "bolder"
           }}
         >
-          <img src={`/wrapped/${id}/recap.png`} style={{
+          <img src={`/wrapped/${folder}/recap.png`} style={{
             width: "80%",
           }}></img>
           <div>
-          <p style={{ textDecoration: "underline" }} onClick={() => handleDownload(`/wrapped/${id}/recap.png`)}>
-            Download
-          </p>
-          <p style={{ textDecoration: "underline" }} onClick={()=> handleShare(`/wrapped/${id}/recap.png`)}>
-            Share
-          </p>
-          <p style={{ textDecoration: "underline" }} onClick={close}>
-            Back
-          </p>
+            <p style={{ textDecoration: "underline" }} onClick={() => handleDownload(`/wrapped/${folder}/recap.png`)}>
+              Download
+            </p>
+            <p style={{ textDecoration: "underline" }} onClick={() => handleShare(`/wrapped/${folder}/recap.png`)}>
+              Share
+            </p>
+            <p style={{ textDecoration: "underline" }} onClick={close}>
+              Back
+            </p>
           </div>
         </div>
       ),
     },
     {
-      url: `/wrapped/${id}/7.mp4`,
+      url: `/wrapped/common/7.mp4`,
       type: "video",
+      seeMoreCollapsed: ({ toggleMore }) => (
+        <p
+          onClick={() => toggleMore(true)}
+          style={{
+            color: 'white',
+            textAlign: 'center',
+            fontFamily: 'sans-serif'
+          }}
+        >
+          Check it out! →
+        </p>
+      ),
+      seeMore: ({ close }: { close: MouseEventHandler }) => (
+        <>
+          <div className="container" style={{ backgroundColor: "#A7A4C7", display: "flex", flexDirection: "column" }}>
+          <Coupon code={coupon}></Coupon>
+          <p style={{ textDecoration: "underline" }} onClick={close}>
+            Back
+          </p>
+          </div>
+        </>
+      ),
     },
   ];
   const [sizes, setSizes] = useState<Sizes>({});
@@ -127,7 +220,6 @@ function App() {
           width={sizes.width}
           height={sizes.height}
           keyboardNavigation={true}
-          loop={true}
           storyContainerStyles={{ borderRadius: 8, overflow: "hidden" }}
         />
       </div>
