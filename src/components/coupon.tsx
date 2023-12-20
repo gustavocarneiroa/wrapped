@@ -1,5 +1,3 @@
-import { MouseEventHandler } from "react"
-
 function Coupon(props: { code: string }) {
     return (
         <div className="coupon-card" style={{

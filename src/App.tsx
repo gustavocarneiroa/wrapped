@@ -89,7 +89,7 @@ function App() {
       <>
         <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
           <h1
-            style={{ color: 'white', fontFamily: 'sans-serif' }}
+            style={{ color: 'white' }}
           >Teacher Késsia Lima Wrapped 2023</h1>
         </div>
       </>
@@ -127,7 +127,6 @@ function App() {
           style={{
             color: 'white',
             textAlign: 'center',
-            fontFamily: 'sans-serif'
           }}
         >
           Wanna share it? →
@@ -144,7 +143,6 @@ function App() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            fontFamily: "sans-serif",
             color: "white",
             fontWeight: "bolder"
           }}
@@ -175,7 +173,6 @@ function App() {
           style={{
             color: 'white',
             textAlign: 'center',
-            fontFamily: 'sans-serif'
           }}
         >
           Check it out! →
