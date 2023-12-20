@@ -28,27 +28,27 @@ function App() {
   document.title = `${students[id]} - TKL`
   const stories: Story[] = [
     {
-      url: `/${id}/1.mp4`,
+      url: `/wrapped/${id}/1.mp4`,
       type: "video",
     },
     {
-      url: `/${id}/2.mp4`,
+      url: `/wrapped/${id}/2.mp4`,
       type: "video",
     },
     {
-      url: `/${id}/3.mp4`,
+      url: `/wrapped/${id}/3.mp4`,
       type: "video",
     },
     {
-      url: `/${id}/4.mp4`,
+      url: `/wrapped/${id}/4.mp4`,
       type: "video",
     },
     {
-      url: `/${id}/5.mp4`,
+      url: `/wrapped/${id}/5.mp4`,
       type: "video",
     },
     {
-      url: `/${id}/6.mp4`,
+      url: `/wrapped/${id}/6.mp4`,
       type: "video",
       seeMoreCollapsed: ({ toggleMore }) => (
         <p 
@@ -78,14 +78,14 @@ function App() {
             fontWeight: "bolder"
           }}
         >
-          <img src={`/${id}/recap.png`} style={{
+          <img src={`/wrapped/${id}/recap.png`} style={{
             width: "80%",
           }}></img>
           <div>
-          <p style={{ textDecoration: "underline" }} onClick={() => handleDownload(`/${id}/recap.png`)}>
+          <p style={{ textDecoration: "underline" }} onClick={() => handleDownload(`/wrapped/${id}/recap.png`)}>
             Download
           </p>
-          <p style={{ textDecoration: "underline" }} onClick={()=> handleShare(`/${id}/recap.png`)}>
+          <p style={{ textDecoration: "underline" }} onClick={()=> handleShare(`/wrapped/${id}/recap.png`)}>
             Share
           </p>
           <p style={{ textDecoration: "underline" }} onClick={close}>
@@ -96,7 +96,7 @@ function App() {
       ),
     },
     {
-      url: `/${id}/7.mp4`,
+      url: `/wrapped/${id}/7.mp4`,
       type: "video",
     },
   ];
