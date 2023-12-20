@@ -9,7 +9,7 @@ function Coupon(props: { code: string }) {
             </div>
             <p style={{
                 fontSize: "70%"
-            }}>O cupom é válido até 31/01/2024. O desconto único é de 20% de desconto na próxima mensalidade do aluno e 20% na primeira mensalidade do novo aluno. Uso único.</p>
+            }}>Desconto único de 20% de desconto na próxima mensalidade do aluno e 20% na primeira mensalidade do novo aluno ingressante. Uso único, válido até 31/01/2024. </p>
             <div className="circle1"></div>
             <div className="circle2"></div>
         </div>
