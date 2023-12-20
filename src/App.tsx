@@ -120,7 +120,7 @@ function App() {
   }, []);
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'hidden', height: '100vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <Stories
           stories={stories}
           defaultInterval={80000}
