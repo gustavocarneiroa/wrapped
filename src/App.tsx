@@ -181,7 +181,7 @@ function App() {
       seeMore: ({ close }: { close: MouseEventHandler }) => (
         <>
           <div className="container" style={{ backgroundColor: "#A7A4C7", display: "flex", flexDirection: "column" }}>
-          <Coupon code={coupon}></Coupon>
+          <Coupon code={coupon} isMobile={!!sizes.width}></Coupon>
           <p style={{ textDecoration: "underline" }} onClick={close}>
             Back
           </p>

@@ -1,8 +1,12 @@
-function Coupon(props: { code: string }) {
+function Coupon(props: { code: string, isMobile: boolean }) {
     return (
-        <div className="coupon-card" style={{
-            margin: "2%"
-        }}>
+        <div className="coupon-card" style={
+            props.isMobile ? {
+                margin: "5%",
+                marginLeft: 2,
+            } : {
+                margin: "3%"
+            }}>
             <img src="/wrapped/logo.png" className="logo" />
             <div className="coupon-row">
                 <span id="cpnCode">{props.code}</span>
