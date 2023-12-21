@@ -8,18 +8,21 @@ export const handleDownload = (url: string) => {
 };
 
 export const handleShare = async (url: string) => {
-    try {
-        if (!navigator.share) {
-            alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
+    const blob = await fetch(url).then(r=>r.blob())
+    const data = {
+        files: [
+          new File([blob], 'recap.png', {
+            type: blob.type,
+          }),
+        ],
+        title: 'TKL - Recap',
+      };
+      try {
+        if (!(navigator.canShare(data))) {
+          throw new Error("Can't share data.");
         }
-        const shareData = {
-            title: 'Título do Compartilhamento',
-            text: 'Descrição do Compartilhamento',
-            url: url,
-        };
-
-        await navigator.share(shareData);
-    } catch (error: any) {
-        console.error('Erro ao compartilhar:', error.message);
-    }
+        await navigator.share(data);
+      } catch (err: any) {
+        console.error(err.name, err.message);
+      }
 };
